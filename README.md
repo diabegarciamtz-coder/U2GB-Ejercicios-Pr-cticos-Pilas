@@ -1,5 +1,6 @@
 # U2GB-Ejercicios-Practicos-Pilas
 
+### Lista Invertida
 ```
 package ejPracticosPilas;
 
@@ -47,6 +48,7 @@ public class InversorLista {
 }
 ```
 
+### Palabras Invertidas
 ```
 package ejPracticosPilas;
 
@@ -97,6 +99,7 @@ public class PalabraInversa {
 }
 ```
 
+### Palindromos
 ```
 package ejPracticosPilas;
 
@@ -161,6 +164,7 @@ public class Palindromo {
 }
 ```
 
+### Pila basica
 ```
 package ejPracticosPilas;
 
@@ -202,6 +206,7 @@ public class SimuladorPilaBasica {
 }
 ```
 
+### Verificador de pila
 ```
 package ejPracticosPilas;
 
