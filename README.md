@@ -5,17 +5,14 @@
 package ejPracticosPilas;
 
 /**
- * Este programa invierte el orden de una lista de números utilizando una pila.
- * Apila cada elemento y luego los desapila para mostrarlos en orden inverso.
- *
+ * Implementación personalizada de una pila usando lista enlazada
+ * 
  * @author Diana Mabel Garcia Martinez
  *         1224100672
  *         diabegarciamtz@gmail.com
  *         01/11/25
  */
-
-// Implementación personalizada de una pila usando lista enlazada
-class Pila<T> {
+public class Pila<T> {
     private Nodo<T> tope;
     private int tamaño;
     
@@ -63,35 +60,78 @@ class Pila<T> {
         return tope == null;
     }
 }
+```
+```
+package ejPracticosPilas;
+
+/**
+ * Este programa invierte el orden de una lista de números utilizando una pila.
+ * Apila cada elemento y luego los desapila para mostrarlos en orden inverso.
+ *
+ * @author Diana Mabel Garcia Martinez
+ *         1224100672
+ *         diabegarciamtz@gmail.com
+ *         01/11/25
+ */
 
 public class InversorLista {
+    
+    /**
+     * Invierte una lista de números utilizando una pila
+     * 
+     * @param lista La lista de números a invertir
+     * @return String con la lista invertida
+     */
+    public String invertirLista(int[] lista) {
+        Pila<Integer> pila = new Pila<>();
+        StringBuilder resultado = new StringBuilder();
+        
+        // Apilar los elementos de la lista
+        for (int n : lista) {
+            pila.push(n);
+        }
+        
+        // Desapilar para obtener la lista invertida
+        while (!pila.isEmpty()) {
+            resultado.append(pila.pop()).append(" ");
+        }
+        
+        return resultado.toString().trim();
+    }
+    
+    /**
+     * Convierte una lista de números a string
+     * 
+     * @param lista La lista de números
+     * @return String con los números separados por espacios
+     */
+    public String listaToString(int[] lista) {
+        StringBuilder sb = new StringBuilder();
+        for (int n : lista) {
+            sb.append(n).append(" ");
+        }
+        return sb.toString().trim();
+    }
+    
+    /**
+     * Método principal que ejecuta el programa
+     */
     public static void main(String[] args) {
+        InversorLista inversor = new InversorLista();
+        
         // Se define una lista de enteros
         int[] lista = {1, 2, 3, 4};
-
-        // Se crea una pila para almacenar los elementos de la lista
-        Pila<Integer> pila = new Pila<>();
 
         // Mensaje de encabezado del programa
         System.out.println("=== INVERSOR DE LISTA ===");
 
         //  Mostrar la lista original
         System.out.print("Lista original: ");
-        for (int n : lista) {
-            System.out.print(n + " "); // Imprime cada número en orden
-        }
-        System.out.println(); // Salto de línea
-
-        //  Apilar los elementos de la lista
-        for (int n : lista) {
-            pila.push(n); // Inserta cada número en la pila
-        }
+        System.out.println(inversor.listaToString(lista));
 
         //  Mostrar la lista invertida
         System.out.print("Lista invertida: ");
-        while (!pila.isEmpty()) {
-            System.out.print(pila.pop() + " "); // Extrae y muestra el último número insertado
-        }
+        System.out.println(inversor.invertirLista(lista));
     }
 }
 ```
@@ -113,12 +153,36 @@ package ejPracticosPilas;
 import java.util.Scanner;
 
 public class PalabraInversa {
-    public static void main(String[] args) {
-        // Se crea un objeto Scanner para leer entrada del usuario
-        Scanner sc = new Scanner(System.in);
-
-        // Se crea una pila de caracteres para almacenar las letras de la palabra
+    
+    /**
+     * Invierte una palabra utilizando una pila
+     * 
+     * @param palabra La palabra a invertir
+     * @return String con la palabra invertida
+     */
+    public String invertirPalabra(String palabra) {
         Pila<Character> pila = new Pila<>();
+        StringBuilder resultado = new StringBuilder();
+        
+        // Apilar cada letra de la palabra
+        for (char c : palabra.toCharArray()) {
+            pila.push(c);
+        }
+        
+        // Desapilar para obtener la palabra invertida
+        while (!pila.isEmpty()) {
+            resultado.append(pila.pop());
+        }
+        
+        return resultado.toString();
+    }
+    
+    /**
+     * Método principal que ejecuta el programa
+     */
+    public static void main(String[] args) {
+        PalabraInversa inversor = new PalabraInversa();
+        Scanner sc = new Scanner(System.in);
 
         // Mensaje de bienvenida al usuario
         System.out.println("=== INVERSOR DE PALABRAS ===");
@@ -127,18 +191,10 @@ public class PalabraInversa {
         System.out.print("Ingrese una palabra: ");
         String palabra = sc.nextLine();
 
-        //  Apilar cada letra de la palabra
-        // Se convierte la palabra en un arreglo de caracteres y se apilan uno por uno
-        for (char c : palabra.toCharArray()) {
-            pila.push(c); // Inserta el carácter en la pila
-        }
-
-        //  Mostrar la palabra invertida
-        // Se desapilan los caracteres uno por uno y se imprimen
+        // Invertir y mostrar la palabra
+        String palabraInvertida = inversor.invertirPalabra(palabra);
         System.out.print("Palabra invertida: ");
-        while (!pila.isEmpty()) {
-            System.out.print(pila.pop()); // Extrae el último carácter insertado
-        }
+        System.out.println(palabraInvertida);
 
         // Se cierra el Scanner para liberar recursos
         sc.close();
