@@ -14,7 +14,55 @@ package ejPracticosPilas;
  *         01/11/25
  */
 
-import java.util.Stack;
+// Implementación personalizada de una pila usando lista enlazada
+class Pila<T> {
+    private Nodo<T> tope;
+    private int tamaño;
+    
+    private static class Nodo<T> {
+        T dato;
+        Nodo<T> siguiente;
+        
+        Nodo(T dato) {
+            this.dato = dato;
+            this.siguiente = null;
+        }
+    }
+    
+    public Pila() {
+        this.tope = null;
+        this.tamaño = 0;
+    }
+    
+    public void push(T elemento) {
+        Nodo<T> nuevoNodo = new Nodo<>(elemento);
+        nuevoNodo.siguiente = tope;
+        tope = nuevoNodo;
+        tamaño++;
+    }
+    
+    public T pop() {
+        if (isEmpty()) {
+            return null;
+        }
+        T dato = tope.dato;
+        tope = tope.siguiente;
+        tamaño--;
+        return dato;
+    }
+    
+    public T peek() {
+        return isEmpty() ? null : tope.dato;
+    }
+    
+    public int size() {
+        return tamaño;
+    }
+    
+    public boolean isEmpty() {
+        return tope == null;
+    }
+}
 
 public class InversorLista {
     public static void main(String[] args) {
@@ -22,7 +70,7 @@ public class InversorLista {
         int[] lista = {1, 2, 3, 4};
 
         // Se crea una pila para almacenar los elementos de la lista
-        Stack<Integer> pila = new Stack<>();
+        Pila<Integer> pila = new Pila<>();
 
         // Mensaje de encabezado del programa
         System.out.println("=== INVERSOR DE LISTA ===");
@@ -62,7 +110,6 @@ package ejPracticosPilas;
  *         01/11/25
  */
 
-import java.util.Stack;
 import java.util.Scanner;
 
 public class PalabraInversa {
@@ -71,7 +118,7 @@ public class PalabraInversa {
         Scanner sc = new Scanner(System.in);
 
         // Se crea una pila de caracteres para almacenar las letras de la palabra
-        Stack<Character> pila = new Stack<>();
+        Pila<Character> pila = new Pila<>();
 
         // Mensaje de bienvenida al usuario
         System.out.println("=== INVERSOR DE PALABRAS ===");
